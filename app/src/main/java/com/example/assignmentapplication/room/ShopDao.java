@@ -5,7 +5,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.example.assignmentapplication.entity.*;
+
+import com.example.assignmentapplication.entity.Cart;
+import com.example.assignmentapplication.entity.Category;
+import com.example.assignmentapplication.entity.Product;
+import com.example.assignmentapplication.entity.Purchase;
+import com.example.assignmentapplication.entity.PurchaseDetail;
+import com.example.assignmentapplication.entity.User;
 
 import java.util.List;
 
@@ -24,9 +30,6 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Users WHERE userId = :userId")
     User getUserById(int userId);
-
-    @Query("SELECT * FROM Users WHERE username = :username AND password = :password")
-    User login(String username, String password);
 
     @Query("SELECT * FROM Users")
     List<User> getAllUsers();
@@ -62,4 +65,52 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Categories")
     List<Category> getAllCategories();
+
+    // Cart operations
+    @Insert
+    void insertCart(Cart cart);
+
+    @Update
+    void updateCart(Cart cart);
+
+    @Delete
+    void deleteCart(Cart cart);
+
+    @Query("SELECT * FROM Carts WHERE cartId = :cartId")
+    Cart getCartById(int cartId);
+
+    @Query("SELECT * FROM Carts")
+    List<Cart> getAllCarts();
+
+    // Purchase operations
+    @Insert
+    void insertPurchase(Purchase purchase);
+
+    @Update
+    void updatePurchase(Purchase purchase);
+
+    @Delete
+    void deletePurchase(Purchase purchase);
+
+    @Query("SELECT * FROM Purchases WHERE purchaseId = :purchaseId")
+    Purchase getPurchaseById(int purchaseId);
+
+    @Query("SELECT * FROM Purchases")
+    List<Purchase> getAllPurchases();
+
+    // PurchaseDetail operations
+    @Insert
+    void insertPurchaseDetail(PurchaseDetail purchaseDetail);
+
+    @Update
+    void updatePurchaseDetail(PurchaseDetail purchaseDetail);
+
+    @Delete
+    void deletePurchaseDetail(PurchaseDetail purchaseDetail);
+
+    @Query("SELECT * FROM PurchaseDetails WHERE purchaseId = :purchaseId")
+    List<PurchaseDetail> getPurchaseDetailsByPurchaseId(int purchaseId);
+
+    @Query("SELECT * FROM PurchaseDetails")
+    List<PurchaseDetail> getAllPurchaseDetails();
 }
