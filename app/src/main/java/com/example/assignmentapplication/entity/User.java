@@ -11,12 +11,14 @@ public class User {
     public String username;
     public String password;
     public String email;
+    public int role;
     public long createdAt;
 
-    public User(String username, String password, String email, long createdAt) {
+    public User(String username, String password, String email, int role, long createdAt) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
         this.createdAt = createdAt;
     }
 }
