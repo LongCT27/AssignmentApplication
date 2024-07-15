@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AssignmentApplication</string>
+    <string name="category">Category</string>
+    <string name="product">Product</string>
+    <string name="purchase">Purchase</string>
+    <string name="user">User</string>
 </resources>
