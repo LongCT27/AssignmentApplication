@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDatabase;
-import com.example.assignmentapplication.room.ShopDatabaseSingleton;
+import com.example.assignmentapplication.room.ShopDatabaseInstance;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             String username = params[0];
             String password = params[1];
 
-            ShopDatabase db = ShopDatabaseSingleton.getInstance(getApplicationContext());
+            ShopDatabase db = ShopDatabaseInstance.getDatabase(getApplicationContext());
             User user;
                 user = db.shopDao().getUserByEmailAndPassword(username, password);
             return user;

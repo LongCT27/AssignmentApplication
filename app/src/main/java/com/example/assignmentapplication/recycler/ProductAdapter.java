@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.assignmentapplication.R;
-import com.example.assignmentapplication.activities.ProductDetailActivity;
+import com.example.assignmentapplication.activity.ProductDetailActivity;
 import com.example.assignmentapplication.entity.Product;
 
 import java.util.List;

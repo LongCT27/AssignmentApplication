@@ -1,4 +1,4 @@
-package com.example.assignmentapplication.activities;
+package com.example.assignmentapplication.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,9 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;

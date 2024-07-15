@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDatabase;
-import com.example.assignmentapplication.room.ShopDatabaseSingleton;
+import com.example.assignmentapplication.room.ShopDatabaseInstance;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
     private class RegisterAsyncTask extends AsyncTask<String, Void, User> {
         @Override
         protected User doInBackground(String... params) {
-            ShopDatabase db = ShopDatabaseSingleton.getInstance(RegisterActivity.this);
+            ShopDatabase db = ShopDatabaseInstance.getDatabase(RegisterActivity.this);
             // check if email is exist in db
             User userIndb = db.shopDao().getUserByEmail(params[2]);
             if(userIndb != null) {
