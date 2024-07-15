@@ -17,11 +17,13 @@ public class Product {
     public String description;
     public double price;
     public int categoryId;
+    public int amount;
 
-    public Product(String productName, String description, double price, int categoryId) {
+    public Product(String productName, String description, double price, int categoryId, int amount) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.categoryId = categoryId;
+        this.amount = amount;
     }
 }

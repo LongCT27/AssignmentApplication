@@ -50,6 +50,9 @@ public interface ShopDao {
     @Query("SELECT * FROM Products")
     List<Product> getAllProducts();
 
+    @Query("SELECT * FROM Products WHERE productName LIKE :query")
+    List<Product> queryProducts(String query);
+
     // Category operations
     @Insert
     void insertCategory(Category category);
