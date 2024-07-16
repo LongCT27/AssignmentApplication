@@ -45,7 +45,7 @@ public class ManageCategory extends AppCompatActivity {
             return insets;
         });
         initRoomDatabase();
-         addProduct();
+       //  addProduct();
         list = shopDao.getAllCategories();
         recyclerView = findViewById(R.id.rcv);
         adapter = new CategoryAdapter(list, new CategoryAdapter.OnItemClickListener() {
