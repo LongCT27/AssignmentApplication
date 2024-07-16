@@ -30,6 +30,11 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Users WHERE userId = :userId")
     User getUserById(int userId);
+    @Query("SELECT * FROM Users WHERE email = :email")
+    User getUserByEmail(String email);
+
+    @Query("SELECT * FROM Users WHERE username = :username")
+    User getUserByUsername(String username);
 
     @Query("SELECT * FROM Users")
     List<User> getAllUsers();

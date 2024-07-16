@@ -3,8 +3,10 @@ package com.example.assignmentapplication.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Users")
-public class User {
+public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int userId;
 
@@ -13,6 +15,9 @@ public class User {
     public String email;
     public int role;
     public long createdAt;
+
+    public User() {
+    }
 
     public User(String username, String password, String email, int role, long createdAt) {
         this.username = username;

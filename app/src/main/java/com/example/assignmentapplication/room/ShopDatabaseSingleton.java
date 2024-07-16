@@ -11,6 +11,7 @@ public class ShopDatabaseSingleton {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                             ShopDatabase.class, "shop_database")
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;
