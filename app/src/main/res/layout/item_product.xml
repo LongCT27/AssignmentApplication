@@ -41,6 +41,15 @@
             android:layout_marginBottom="4dp" />
 
         <TextView
+            android:id="@+id/product_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
             android:id="@+id/product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

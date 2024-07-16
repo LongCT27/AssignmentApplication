@@ -14,10 +14,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.assignmentapplication.R;
+import com.example.assignmentapplication.entity.Cart;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
+import com.example.assignmentapplication.utils.CartLogicHandlerUtils;
+import com.example.assignmentapplication.utils.UserInfoUtils;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Button addToCartButton;
     private ShopDatabase shopDatabase;
     private ShopDao dao;
+    private int productId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         dao = shopDatabase.shopDao();
 
         // Get product details from intent
-        int productId = getIntent().getIntExtra("product_id", -1);
+        productId = getIntent().getIntExtra("product_id", -1);
         if (productId != -1) {
             // Fetch product from database
             Product product = dao.getProductById(productId);
@@ -57,17 +61,39 @@ public class ProductDetailActivity extends AppCompatActivity {
                 productDescription.setText(product.description);
                 productPrice.setText(String.format("$%.2f", product.price));
                 productImage.setImageResource(R.drawable.placeholder); // Placeholder image
+                //Check for amount able to add
+                quantityPicker.setMinValue(1);
+                Cart cart = dao.getUserCartOfProduct(1, productId);
+                if (cart == null){
+                    quantityPicker.setMinValue(1);
+                    quantityPicker.setMaxValue(product.amount);
+                } else {
+                    int max = product.amount - cart.quantity;
+                    if (max > 0){
+                        quantityPicker.setMinValue(1);
+                        quantityPicker.setMaxValue(max);
+                    } else {
+                        quantityPicker.setMinValue(0);
+                        quantityPicker.setMaxValue(0);
+                        quantityPicker.setValue(0);
+                        addToCartButton.setEnabled(false);
+                    }
+                }
+
             }
         }
 
-        quantityPicker.setMinValue(1);
-        quantityPicker.setMaxValue(100);
+
 
         addToCartButton.setOnClickListener(v -> {
             int quantity = quantityPicker.getValue();
             // Add product to cart with specified quantity
-            // Here you can implement the logic to add the product to the cart
-            Toast.makeText(ProductDetailActivity.this, "Added to cart: " + quantity + " items", Toast.LENGTH_SHORT).show();
+            boolean result = CartLogicHandlerUtils.addItemToCart(dao, UserInfoUtils.GetUserId(), productId, quantity);
+            if (result){
+                Toast.makeText(ProductDetailActivity.this, "Added to cart: " + quantity + " items", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ProductDetailActivity.this, "Failed to add. Quantity exceeded.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

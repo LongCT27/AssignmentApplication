@@ -1,9 +1,11 @@
 package com.example.assignmentapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -17,10 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
+import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.recycler.ProductAdapter;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
+import com.example.assignmentapplication.utils.CartLogicHandlerUtils;
+import com.example.assignmentapplication.utils.UserInfoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +53,6 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         shopDatabase = ShopDatabaseInstance.getDatabase(getApplicationContext());
         dao = shopDatabase.shopDao();
-
         List<Product> productList = dao.getAllProducts();
 
         productAdapter = new ProductAdapter(this,productList);
@@ -85,6 +89,10 @@ public class ProductListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_cart){
+            Intent intent = new Intent(this,CartActivity.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -121,4 +129,13 @@ public class ProductListActivity extends AppCompatActivity {
         }).start();
     }
 
+    public void addItemToCart(int productId) {
+        boolean result = CartLogicHandlerUtils.addItemToCart(dao,
+                UserInfoUtils.GetUserId(), productId, 1);
+        if (result){
+            Toast.makeText(this,"Added!",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Quantity exceeded!",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
