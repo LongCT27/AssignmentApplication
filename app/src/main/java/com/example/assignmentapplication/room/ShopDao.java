@@ -30,11 +30,18 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Users WHERE userId = :userId")
     User getUserById(int userId);
-    @Query("SELECT * FROM Users WHERE email = :email")
-    User getUserByEmail(String email);
 
     @Query("SELECT * FROM Users WHERE username = :username")
     User getUserByUsername(String username);
+
+    @Query("SELECT * FROM Users WHERE username = :username AND password = :password")
+    User getUserByUsernameNadPassword(String username, String password);
+
+    @Query("SELECT * FROM Users WHERE email = :email AND password = :password")
+    User getUserByEmailAndPassword(String email, String password);
+
+    @Query("SELECT * FROM Users WHERE email = :email")
+    User getUserByEmail(String email);
 
     @Query("SELECT * FROM Users")
     List<User> getAllUsers();
@@ -54,6 +61,9 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Products")
     List<Product> getAllProducts();
+
+    @Query("SELECT * FROM Products WHERE productName LIKE :query")
+    List<Product> queryProducts(String query);
 
     // Category operations
     @Insert
@@ -81,15 +91,24 @@ public interface ShopDao {
     @Delete
     void deleteCart(Cart cart);
 
+    @Query("DELETE FROM Carts WHERE userId = :userId")
+    void clearCart(int userId);
+
     @Query("SELECT * FROM Carts WHERE cartId = :cartId")
     Cart getCartById(int cartId);
 
     @Query("SELECT * FROM Carts")
     List<Cart> getAllCarts();
 
+    @Query("SELECT * from Carts WHERE userId == :userId")
+    List<Cart> getUserCart(int userId);
+
+    @Query("SELECT * from Carts WHERE userId == :userId AND productId == :productId")
+    Cart getUserCartOfProduct(int userId, int productId);
+
     // Purchase operations
     @Insert
-    void insertPurchase(Purchase purchase);
+    long insertPurchase(Purchase purchase);
 
     @Update
     void updatePurchase(Purchase purchase);
@@ -118,4 +137,6 @@ public interface ShopDao {
 
     @Query("SELECT * FROM PurchaseDetails")
     List<PurchaseDetail> getAllPurchaseDetails();
+
+
 }

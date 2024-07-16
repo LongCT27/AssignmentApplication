@@ -2,5 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="textColor">#272727</color>
+
+    <color name="custom_login_background_color">#3498DB</color>
 </resources>
