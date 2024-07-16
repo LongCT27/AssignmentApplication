@@ -42,7 +42,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(AdminHomeActivity.this, ManagePurchase.class);
+                startActivity(intent);
             }
         });
         LinearLayout product = findViewById(R.id.Product_admin);

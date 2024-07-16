@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AssignmentApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ManagePurchase"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

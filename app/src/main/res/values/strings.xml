@@ -4,4 +4,6 @@
     <string name="product">Product</string>
     <string name="purchase">Purchase</string>
     <string name="user">User</string>
+    <string name="purchase_id">Purchase ID</string>
+    <string name="purchase_date">Purchase Date</string>
 </resources>
