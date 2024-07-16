@@ -105,7 +105,7 @@ public interface ShopDao {
 
     // Purchase operations
     @Insert
-    void insertPurchase(Purchase purchase);
+    long insertPurchase(Purchase purchase);
 
     @Update
     void updatePurchase(Purchase purchase);

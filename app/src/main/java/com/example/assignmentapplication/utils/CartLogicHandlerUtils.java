@@ -2,8 +2,11 @@ package com.example.assignmentapplication.utils;
 
 import com.example.assignmentapplication.entity.Cart;
 import com.example.assignmentapplication.entity.Product;
+import com.example.assignmentapplication.entity.Purchase;
+import com.example.assignmentapplication.entity.PurchaseDetail;
 import com.example.assignmentapplication.room.ShopDao;
 
+import java.util.Date;
 import java.util.List;
 
 public class CartLogicHandlerUtils {
@@ -52,10 +55,18 @@ public class CartLogicHandlerUtils {
             }
         }
         //Do checkout
+        //Create Purchase
+        double totalPrice = getTotalPrice(dao,userId);
+        Purchase purchase = new Purchase(userId,totalPrice, new Date().getTime());
+        int purchaseId = Math.toIntExact(dao.insertPurchase(purchase));
+        //Update item
         for (Cart cart : cartItems){
             Product product = dao.getProductById(cart.productId);
             product.amount -= cart.quantity;
             dao.updateProduct(product);
+            //Purchase Detail
+            PurchaseDetail detail = new PurchaseDetail(purchaseId,cart.productId,cart.quantity);
+            dao.insertPurchaseDetail(detail);
         }
         //Clear cart
         dao.clearCart(userId);

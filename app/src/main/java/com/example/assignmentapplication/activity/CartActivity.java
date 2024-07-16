@@ -92,6 +92,10 @@ public class CartActivity extends AppCompatActivity {
 
         // Handle checkout button click
         checkoutButton.setOnClickListener(v -> {
+            if (cartAdapter.getItemCount() == 0){
+                Toast.makeText(this,"Cart is empty!",Toast.LENGTH_SHORT).show();
+                return;
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Checkout Confirmation");
             builder.setMessage(String.format("Total Price: $%.2f\nDo you want to proceed with the checkout?",
