@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:backgroundTint="@color/custom_login_background_color"
             android:background="@drawable/login_button"
             android:textColor="@android:color/white"
             android:layout_marginBottom="20dp" />

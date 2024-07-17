@@ -1,13 +1,18 @@
 package com.example.assignmentapplication.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +22,11 @@ import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseSingleton;
+import com.example.assignmentapplication.utilities.UserHelper;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -81,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (user != null) {
                 // Handle successful login, for example:
+                    UserHelper.saveUserInfoExternal(user);
                 // Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                 // startActivity(intent);
                 showToast("Login successful");
