@@ -56,6 +56,7 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         shopDatabase = ShopDatabaseInstance.getDatabase(getApplicationContext());
+        //populateDatabaseWithMockData();
         dao = shopDatabase.shopDao();
         List<Product> productList = dao.getAllProducts();
 

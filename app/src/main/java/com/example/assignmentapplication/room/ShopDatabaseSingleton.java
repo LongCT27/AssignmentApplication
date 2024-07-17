@@ -12,6 +12,7 @@ public class ShopDatabaseSingleton {
                             ShopDatabase.class, "shop_database")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
+                    .addMigrations(Migrations.MIGRATION_1_2)
                     .build();
         }
         return instance;

@@ -10,7 +10,10 @@ public class ShopDatabaseInstance {
     public static ShopDatabase getDatabase(Context context){
         if (database == null){
             database = Room.databaseBuilder(context,ShopDatabase.class,"database")
-                    .allowMainThreadQueries().build();
+                    .allowMainThreadQueries()
+                    .addMigrations(Migrations.MIGRATION_1_2)
+                    .fallbackToDestructiveMigration()
+                    .build();
         }
         return database;
     }
