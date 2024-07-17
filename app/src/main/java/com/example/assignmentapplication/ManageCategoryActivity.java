@@ -1,8 +1,11 @@
 package com.example.assignmentapplication;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -16,7 +19,6 @@ import androidx.room.Room;
 
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
-import com.example.assignmentapplication.entity.Purchase;
 import com.example.assignmentapplication.entity.PurchaseDetail;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
@@ -24,15 +26,13 @@ import com.example.assignmentapplication.room.ShopDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagePurchase extends AppCompatActivity {
+public class ManageCategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
-    private PurchaseAdapter adapter;
-
-    private PurchaseDetailAdapter adapter2;
-
-    static List<PurchaseDetail> listPurchaseDetailBaseOnPurchaseID = new ArrayList<>();
-    static List<Purchase> list = new ArrayList<>();
+    private CategoryAdapter adapter;
+    private ProductCategoryAdapter adapter2;
+    static List<Product> listProductBaseOnCategory = new ArrayList<>();
+    static List<Category> list = new ArrayList<>();
     ShopDatabase db;
     ShopDao shopDao;
 
@@ -40,20 +40,34 @@ public class ManagePurchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_manage_purchase);
+        setContentView(R.layout.activity_manage_category);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+       ImageView imageView232 = (ImageView) findViewById(R.id.imgBack);
+       imageView232.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(ManageCategoryActivity.this, AdminHomeActivity.class);
+               startActivity(intent);
+           }
+       });
+
         initRoomDatabase();
-        //  addProduct();
-        list = shopDao.getAllPurchases();
-        recyclerView = findViewById(R.id.rcv3);
-        adapter = new PurchaseAdapter(list, new PurchaseAdapter.OnItemClickListener() {
+        //addProduct();
+        list = shopDao.getAllCategories();
+        recyclerView = findViewById(R.id.rcv);
+        adapter = new CategoryAdapter(list, new CategoryAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Purchase cate) {
-                showCart(cate.purchaseId);
+            public void onItemClick(Category cate) {
+                showCart(cate.categoryId);
+            }
+
+            @Override
+            public void onRemoveClick(Category cate) {
+
             }
         });
         GridLayoutManager manager = new GridLayoutManager(this, 1);
@@ -69,10 +83,20 @@ public class ManagePurchase extends AppCompatActivity {
         shopDao = db.shopDao();
     }
 
-    private void showCart(int id) {
+    @SuppressLint("NotifyDataSetChanged")
+    private void addProduct() {
+        //    shopDao.insertProduct(new Product("product23","no",12.2,1));
+        // shopDao.insertUser(new User("tuan","123","tuan@gmail.com",1,System.currentTimeMillis()));
+        //     shopDao.insertPurchase(new Purchase(1,12321,System.currentTimeMillis()));
+        shopDao.insertPurchaseDetail(new PurchaseDetail(2, 1, 2));
+        shopDao.insertPurchaseDetail(new PurchaseDetail(2, 3, 11));
+//shopDao.insertPurchaseDetail(new PurchaseDetail(1,3,13));
+    }
+
+    private void showCart(int CategoryID) {
         // Inflate the custom layout/view
         LayoutInflater inflater = getLayoutInflater();
-        View popupView = inflater.inflate(R.layout.purchase_detail_popup, null);
+        View popupView = inflater.inflate(R.layout.popup_product_base_category, null);
 
         // Create the AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -80,12 +104,18 @@ public class ManagePurchase extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         // Initialize recyclerView2 from popupView
-        recyclerView2 = popupView.findViewById(R.id.rcv6);
-        List<PurchaseDetail> listt = shopDao.getPurchaseDetailsByPurchaseId(id);
-        List<Product> listp = shopDao.getAllProducts();
+        recyclerView2 = popupView.findViewById(R.id.rcv2);
 
+
+        listProductBaseOnCategory = shopDao.getAllProductBaseOnCategoryID(CategoryID);
         // Create an ArrayAdapter
-        adapter2 = new PurchaseDetailAdapter(listt,listp);
+        adapter2 = new ProductCategoryAdapter(listProductBaseOnCategory, new ProductCategoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+                // Handle item click
+            }
+
+        });
 
         GridLayoutManager manager2 = new GridLayoutManager(this, 1);
         recyclerView2.setLayoutManager(manager2);
@@ -93,5 +123,4 @@ public class ManagePurchase extends AppCompatActivity {
         // Show the dialog
         dialog.show();
     }
-
 }

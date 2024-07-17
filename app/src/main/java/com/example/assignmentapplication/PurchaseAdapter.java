@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.assignmentapplication.entity.Purchase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder> {
@@ -42,11 +44,17 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Purcha
         if (Purchaseto == null) {
             return;
         }
+        Date currentDate = new Date(Purchaseto.purchaseDate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        // Format the Date object to the desired format
+        String formattedDate = dateFormat.format(currentDate);
+
         String PurchaseID = Integer.toString(Purchaseto.purchaseId);
         String PurchaseDate = Long.toString(Purchaseto.purchaseDate) ;
         String PurchaseTotalPrice = Double.toString(Purchaseto.totalPrice) ;
         holder.purchaseID.setText(PurchaseID);
-        holder.purchaseDate.setText(PurchaseDate);
+        holder.purchaseDate.setText(formattedDate);
         holder.TotalPrice.setText(PurchaseTotalPrice);
         holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(Purchaseto));
 

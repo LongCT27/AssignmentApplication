@@ -3,9 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManagePurchase">
+    tools:context=".ManagePurchaseActivity">
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="14dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/baseline_arrow_back_24" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv3"
         android:layout_width="match_parent"

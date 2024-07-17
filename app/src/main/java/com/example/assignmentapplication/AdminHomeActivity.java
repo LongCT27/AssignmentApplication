@@ -27,7 +27,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         cate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminHomeActivity.this, ManageCategory.class);
+                Intent intent = new Intent(AdminHomeActivity.this, ManageCategoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +42,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminHomeActivity.this, ManagePurchase.class);
+                Intent intent = new Intent(AdminHomeActivity.this, ManagePurchaseActivity.class);
                 startActivity(intent);
             }
         });
