@@ -29,6 +29,8 @@ public class ManagePurchase extends AppCompatActivity {
     private RecyclerView recyclerView2;
     private PurchaseAdapter adapter;
 
+    private PurchaseDetailAdapter adapter2;
+
     static List<PurchaseDetail> listPurchaseDetailBaseOnPurchaseID = new ArrayList<>();
     static List<Purchase> list = new ArrayList<>();
     ShopDatabase db;
@@ -51,7 +53,7 @@ public class ManagePurchase extends AppCompatActivity {
         adapter = new PurchaseAdapter(list, new PurchaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Purchase cate) {
-
+                showCart(cate.purchaseId);
             }
         });
         GridLayoutManager manager = new GridLayoutManager(this, 1);
@@ -67,5 +69,29 @@ public class ManagePurchase extends AppCompatActivity {
         shopDao = db.shopDao();
     }
 
+    private void showCart(int id) {
+        // Inflate the custom layout/view
+        LayoutInflater inflater = getLayoutInflater();
+        View popupView = inflater.inflate(R.layout.purchase_detail_popup, null);
+
+        // Create the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(popupView);
+        AlertDialog dialog = builder.create();
+
+        // Initialize recyclerView2 from popupView
+        recyclerView2 = popupView.findViewById(R.id.rcv6);
+        List<PurchaseDetail> listt = shopDao.getPurchaseDetailsByPurchaseId(id);
+        List<Product> listp = shopDao.getAllProducts();
+
+        // Create an ArrayAdapter
+        adapter2 = new PurchaseDetailAdapter(listt,listp);
+
+        GridLayoutManager manager2 = new GridLayoutManager(this, 1);
+        recyclerView2.setLayoutManager(manager2);
+        recyclerView2.setAdapter(adapter2);
+        // Show the dialog
+        dialog.show();
+    }
 
 }

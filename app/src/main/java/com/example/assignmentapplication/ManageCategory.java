@@ -48,7 +48,7 @@ public class ManageCategory extends AppCompatActivity {
             return insets;
         });
         initRoomDatabase();
-        //addProduct();
+       //addProduct();
         list = shopDao.getAllCategories();
         recyclerView = findViewById(R.id.rcv);
         adapter = new CategoryAdapter(list, new CategoryAdapter.OnItemClickListener() {
@@ -77,12 +77,12 @@ public class ManageCategory extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void addProduct() {
-      //  shopDao.insertProduct(new Product("product1","no",12.2,1));
+    //    shopDao.insertProduct(new Product("product23","no",12.2,1));
        // shopDao.insertUser(new User("tuan","123","tuan@gmail.com",1,System.currentTimeMillis()));
-      //  shopDao.insertPurchase(new Purchase(1,11.2,System.currentTimeMillis()));
-     //   shopDao.insertPurchaseDetail(new PurchaseDetail(1,1,2));
-        shopDao.insertPurchaseDetail(new PurchaseDetail(1,2,7));
-        shopDao.insertPurchaseDetail(new PurchaseDetail(1,2,11));
+   //     shopDao.insertPurchase(new Purchase(1,12321,System.currentTimeMillis()));
+        shopDao.insertPurchaseDetail(new PurchaseDetail(2,1,2));
+        shopDao.insertPurchaseDetail(new PurchaseDetail(2,3,11));
+//shopDao.insertPurchaseDetail(new PurchaseDetail(1,3,13));
     }
 
     private void showCart(int CategoryID) {

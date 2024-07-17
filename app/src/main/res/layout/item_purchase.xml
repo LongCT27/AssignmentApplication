@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
+    <!-- item_cart.xml -->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="horizontal"
+app:cardCornerRadius="20dp"
+android:layout_margin="10dp">
+
+<LinearLayout
+    android:layout_margin="19dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
+    <TextView
+        android:id="@+id/purchase_id_manage"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="100dp"
+        android:text="ProductName"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/purchaseDate_manage"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:text="@string/purchase_date" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/purchaseTotalPrice_manage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="90dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/purchase_id_manage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:text="@string/purchase_id" />
-
-            <TextView
-                android:id="@+id/purchaseDate_manage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:text="@string/purchase_date" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/purchaseTotalPrice_manage"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:text="TotalPrice"
-            android:textSize="30dp" />
-
-
-    </LinearLayout>
+        android:paddingStart="16dp"
+        android:text="Quantity"
+        android:textColor="@android:color/black" />
+</LinearLayout>
 
 </androidx.cardview.widget.CardView>
