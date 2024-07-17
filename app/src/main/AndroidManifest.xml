@@ -13,15 +13,25 @@
         android:theme="@style/Theme.AssignmentApplication"
         tools:targetApi="31">
         <activity
+            android:name=".manageProductActivity.UpdateProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".manageProductActivity.ManageProductActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".manageProductActivity.AddProductActivity"
+            android:exported="false"/>
+        <activity
             android:name=".mangeUserActivity.UpdateUserActivity"
             android:exported="false" />
         <activity
             android:name=".mangeUserActivity.AddUserActivity"
-            android:exported="false"/>
-        <activity android:name=".mangeUserActivity.ListUserActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name = ".activity.CartActivity"
+            android:name=".mangeUserActivity.ListUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CartActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ProductDetailActivity"
@@ -35,15 +45,16 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>
