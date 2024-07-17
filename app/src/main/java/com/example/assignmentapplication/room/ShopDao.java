@@ -59,6 +59,9 @@ public interface ShopDao {
     @Query("SELECT * FROM Products")
     List<Product> getAllProducts();
 
+    @Query("SELECT * FROM Products WHERE productName LIKE :query")
+    List<Product> queryProducts(String query);
+
     // Category operations
     @Insert
     void insertCategory(Category category);
@@ -85,15 +88,24 @@ public interface ShopDao {
     @Delete
     void deleteCart(Cart cart);
 
+    @Query("DELETE FROM Carts WHERE userId = :userId")
+    void clearCart(int userId);
+
     @Query("SELECT * FROM Carts WHERE cartId = :cartId")
     Cart getCartById(int cartId);
 
     @Query("SELECT * FROM Carts")
     List<Cart> getAllCarts();
 
+    @Query("SELECT * from Carts WHERE userId == :userId")
+    List<Cart> getUserCart(int userId);
+
+    @Query("SELECT * from Carts WHERE userId == :userId AND productId == :productId")
+    Cart getUserCartOfProduct(int userId, int productId);
+
     // Purchase operations
     @Insert
-    void insertPurchase(Purchase purchase);
+    long insertPurchase(Purchase purchase);
 
     @Update
     void updatePurchase(Purchase purchase);
@@ -122,4 +134,6 @@ public interface ShopDao {
 
     @Query("SELECT * FROM PurchaseDetails")
     List<PurchaseDetail> getAllPurchaseDetails();
+
+
 }

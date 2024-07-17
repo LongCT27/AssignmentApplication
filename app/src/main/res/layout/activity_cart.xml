@@ -3,20 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="36dp"
-    android:id="@+id/main">
+    android:id="@+id/main"
+    android:padding="16dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_cart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="4dp" />
 
     <Button
-        android:id="@+id/btn_login_redirect"
+        android:id="@+id/button_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
-    <Button
-        android:id="@+id/btn_product_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Product List" />
-
-    <!-- Add more buttons here for other activities -->
-
+        android:text="Checkout"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
