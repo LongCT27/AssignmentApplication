@@ -19,8 +19,8 @@ import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
+import com.example.assignmentapplication.utilities.UserHelper;
 import com.example.assignmentapplication.utils.CartLogicHandlerUtils;
-import com.example.assignmentapplication.utils.UserInfoUtils;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -88,7 +88,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         addToCartButton.setOnClickListener(v -> {
             int quantity = quantityPicker.getValue();
             // Add product to cart with specified quantity
-            boolean result = CartLogicHandlerUtils.addItemToCart(dao, UserInfoUtils.GetUserId(), productId, quantity);
+            boolean result = CartLogicHandlerUtils.addItemToCart(dao, UserHelper.getUserIDFromFile(), productId, quantity);
             if (result){
                 Toast.makeText(ProductDetailActivity.this, "Added to cart: " + quantity + " items", Toast.LENGTH_SHORT).show();
             } else {

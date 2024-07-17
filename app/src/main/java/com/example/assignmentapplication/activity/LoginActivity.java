@@ -87,9 +87,10 @@ public class LoginActivity extends AppCompatActivity {
 
             if (user != null) {
                 // Handle successful login, for example:
-                    UserHelper.saveUserInfoExternal(user);
-                // Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                // startActivity(intent);
+                UserHelper.saveUserInfoExternal(user);
+                //Redirect to ProductList page
+                Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
+                startActivity(intent);
                 showToast("Login successful");
             } else {
                 showToast("Invalid username/email or password");

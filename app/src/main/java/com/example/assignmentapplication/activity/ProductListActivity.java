@@ -19,13 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
-import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.recycler.ProductAdapter;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
+import com.example.assignmentapplication.utilities.UserHelper;
 import com.example.assignmentapplication.utils.CartLogicHandlerUtils;
-import com.example.assignmentapplication.utils.UserInfoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,7 +130,7 @@ public class ProductListActivity extends AppCompatActivity {
 
     public void addItemToCart(int productId) {
         boolean result = CartLogicHandlerUtils.addItemToCart(dao,
-                UserInfoUtils.GetUserId(), productId, 1);
+                UserHelper.getUserIDFromFile(), productId, 1);
         if (result){
             Toast.makeText(this,"Added!",Toast.LENGTH_SHORT).show();
         } else {

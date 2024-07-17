@@ -1,9 +1,7 @@
 package com.example.assignmentapplication.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,8 +20,8 @@ import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.recycler.CartAdapter;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
+import com.example.assignmentapplication.utilities.UserHelper;
 import com.example.assignmentapplication.utils.CartLogicHandlerUtils;
-import com.example.assignmentapplication.utils.UserInfoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,7 @@ public class CartActivity extends AppCompatActivity {
 
         // Fetch cart items from the database
         dao = ShopDatabaseInstance.getDatabase(this).shopDao();
-        List<Cart> cartItemList = dao.getUserCart(UserInfoUtils.GetUserId());
+        List<Cart> cartItemList = dao.getUserCart(UserHelper.getUserIDFromFile());
 
         //Verify
         List<Cart> soldOut = new ArrayList<>();
@@ -99,7 +97,7 @@ public class CartActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Checkout Confirmation");
             builder.setMessage(String.format("Total Price: $%.2f\nDo you want to proceed with the checkout?",
-                    CartLogicHandlerUtils.getTotalPrice(dao,UserInfoUtils.GetUserId())));
+                    CartLogicHandlerUtils.getTotalPrice(dao,UserHelper.getUserIDFromFile())));
             builder.setPositiveButton("Yes", (dialog, which) -> performCheckout());
             builder.setNegativeButton("No", null);
             builder.create().show();
@@ -107,7 +105,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void performCheckout() {
-        boolean result = CartLogicHandlerUtils.checkout(dao, UserInfoUtils.GetUserId());
+        boolean result = CartLogicHandlerUtils.checkout(dao, UserHelper.getUserIDFromFile());
         if (result){
             // Redirect to ProductListActivity
             Toast.makeText(this,"Checkout completed.",Toast.LENGTH_SHORT).show();
