@@ -17,7 +17,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDao;
-import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.room.ShopDatabaseSingleton;
 import com.example.assignmentapplication.utilities.UserHelper;
 
@@ -103,12 +102,12 @@ public class UpdateUserInformationActivity extends AppCompatActivity {
 
         executor.execute(() -> {
             // Background work here
-            String email = UserHelper.getUserEmailFromFile();
+            int id = UserHelper.getUserIDFromFile();
             if(shopDao == null) {
                 shopDao = ShopDatabaseSingleton.getInstance(getApplicationContext()).shopDao();
             }
-            if (email != null) {
-                user = shopDao.getUserByEmail(email);
+            if (id != -1) {
+                user = shopDao.getUserById(id);
             }
             User finalUser = user;
             handler.post(() -> {
