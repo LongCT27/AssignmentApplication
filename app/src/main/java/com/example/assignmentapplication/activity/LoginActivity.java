@@ -54,6 +54,14 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+
+        //If the user is already logged in, redirect to the Product List page immediately
+        if (UserHelper.getUserIDFromFile() != -1){
+            Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     // create login function using AsyncTask for database operations
@@ -92,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
                 startActivity(intent);
                 showToast("Login successful");
+                finish();
             } else {
                 showToast("Invalid username/email or password");
             }
