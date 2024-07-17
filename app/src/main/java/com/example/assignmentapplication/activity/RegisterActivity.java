@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
             if(userIndb != null) {
                 return null;
             } else {
-                User user = new User(params[0], params[1], params[2],0, 7152024);
+                User user = new User(params[0], params[1], params[2],0, System.currentTimeMillis());
                 db.shopDao().insertUser(user);
                 return user;
             }

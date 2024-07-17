@@ -3,6 +3,8 @@ package com.example.assignmentapplication.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 @Entity(tableName = "Users")
 public class User {
     @PrimaryKey(autoGenerate = true)
@@ -10,6 +12,7 @@ public class User {
 
     public String username;
     public String password;
+
     public String email;
     public int role;
     public long createdAt;
