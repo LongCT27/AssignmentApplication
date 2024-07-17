@@ -1,14 +1,19 @@
 package com.example.assignmentapplication.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -56,6 +61,7 @@ public class ProductListActivity extends AppCompatActivity {
 
         productAdapter = new ProductAdapter(this,productList);
         recyclerView.setAdapter(productAdapter);
+
     }
 
     @Override
@@ -91,6 +97,25 @@ public class ProductListActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_cart){
             Intent intent = new Intent(this,CartActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.action_profile){
+            Intent intent = new Intent(this, UpdateUserInformationActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.action_logout){
+            //Confirmation Dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Exit Confirmation");
+            builder.setMessage("Are you sure you want to logout?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    UserHelper.saveUserInfoExternal(null);
+                    Intent intent = new Intent(ProductListActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            builder.setNegativeButton("No", null);
+            builder.create().show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -137,4 +162,5 @@ public class ProductListActivity extends AppCompatActivity {
             Toast.makeText(this,"Quantity exceeded!",Toast.LENGTH_SHORT).show();
         }
     }
+
 }
