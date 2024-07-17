@@ -13,7 +13,7 @@ import java.io.FileReader;
 
 public class UserHelper {
     public static void saveUserInfoExternal(User user) {
-        String uidStr = Integer.toString(user.userId);
+        String uidStr = user != null ? Integer.toString(user.userId) : "-1";
         if (!isExternalStorageWritable()) {
             //showToast("External Storage is not available");
             return;
