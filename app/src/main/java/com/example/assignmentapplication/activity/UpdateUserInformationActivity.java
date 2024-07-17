@@ -102,12 +102,12 @@ public class UpdateUserInformationActivity extends AppCompatActivity {
 
         executor.execute(() -> {
             // Background work here
-            String email = UserHelper.getUserEmailFromFile();
+            int id = UserHelper.getUserIDFromFile();
             if(shopDao == null) {
                 shopDao = ShopDatabaseInstance.getDatabase(getApplicationContext()).shopDao();
             }
-            if (email != null) {
-                user = shopDao.getUserByEmail(email);
+            if (id != -1) {
+                user = shopDao.getUserById(id);
             }
             User finalUser = user;
             handler.post(() -> {

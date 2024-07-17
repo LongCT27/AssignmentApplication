@@ -1,9 +1,9 @@
 package com.example.assignmentapplication.utilities;
 
-import android.content.Intent;
 import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.example.assignmentapplication.activity.LoginActivity;
 import com.example.assignmentapplication.entity.User;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,6 +13,7 @@ import java.io.FileReader;
 
 public class UserHelper {
     public static void saveUserInfoExternal(User user) {
+        String uidStr = Integer.toString(user.userId);
         if (!isExternalStorageWritable()) {
             //showToast("External Storage is not available");
             return;
@@ -20,8 +21,7 @@ public class UserHelper {
 
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "userInfo.txt");
         try (FileWriter writer = new FileWriter(file, false)) {
-            writer.append("Username: ").append(user.username).append("\n");
-            writer.append("Email: ").append(user.email).append("\n");
+            writer.append("ID: ").append(uidStr).append("\n");
             writer.flush();
             // showToast("User info saved to " + file.getAbsolutePath());
         } catch (IOException e) {
@@ -34,15 +34,17 @@ public class UserHelper {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
-    public static String getUserEmailFromFile() {
+    //return -1 if can't not find
+    public static int getUserIDFromFile() {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "userInfo.txt");
-        String email = null;
+        int Id = -1;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Email: ")) {
-                    email = line.substring(7); // Remove "Email: " prefix
+                if (line.startsWith("ID: ")) {
+                    Log.d("UserHelper", "getUserIDFromFile: " + line.toString());
+                    Id = Integer.parseInt(line.substring(4)); // Remove "Id: " prefix
                     break;
                 }
             }
@@ -50,6 +52,6 @@ public class UserHelper {
             e.printStackTrace();
             // Handle exceptions or errors as needed
         }
-        return email;
+        return Id;
     }
 }
