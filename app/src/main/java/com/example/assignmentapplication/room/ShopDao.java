@@ -31,6 +31,9 @@ public interface ShopDao {
     @Query("SELECT * FROM Users WHERE userId = :userId")
     User getUserById(int userId);
 
+    @Query("SELECT * FROM Users WHERE username = :username")
+    User getUserByUsername(String username);
+
     @Query("SELECT * FROM Users WHERE username = :username AND password = :password")
     User getUserByUsernameNadPassword(String username, String password);
 
