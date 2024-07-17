@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,12 +20,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDatabase;
-import com.example.assignmentapplication.room.ShopDatabaseSingleton;
 import com.example.assignmentapplication.utilities.UserHelper;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import com.example.assignmentapplication.room.ShopDatabaseInstance;
 
 public class LoginActivity extends AppCompatActivity {

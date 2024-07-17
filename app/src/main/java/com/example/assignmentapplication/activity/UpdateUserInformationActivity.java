@@ -17,8 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.room.ShopDao;
-import com.example.assignmentapplication.room.ShopDatabase;
-import com.example.assignmentapplication.room.ShopDatabaseSingleton;
+import com.example.assignmentapplication.room.ShopDatabaseInstance;
 import com.example.assignmentapplication.utilities.UserHelper;
 
 import java.util.concurrent.ExecutorService;
@@ -39,7 +38,7 @@ public class UpdateUserInformationActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        shopDao = ShopDatabaseSingleton.getInstance(getApplicationContext()).shopDao();
+        shopDao = ShopDatabaseInstance.getDatabase(getApplicationContext()).shopDao();
         getUserFromFile();
         edtFullName = findViewById(R.id.etusername);
         edtCurrentPassword = findViewById(R.id.et_current_password);
@@ -105,7 +104,7 @@ public class UpdateUserInformationActivity extends AppCompatActivity {
             // Background work here
             String email = UserHelper.getUserEmailFromFile();
             if(shopDao == null) {
-                shopDao = ShopDatabaseSingleton.getInstance(getApplicationContext()).shopDao();
+                shopDao = ShopDatabaseInstance.getDatabase(getApplicationContext()).shopDao();
             }
             if (email != null) {
                 user = shopDao.getUserByEmail(email);
