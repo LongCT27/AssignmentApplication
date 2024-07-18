@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
-            android:background="@drawable/login_textbox"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:layout_marginBottom="15dp" />
@@ -35,7 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Username"
-            android:background="@drawable/login_textbox"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:layout_marginBottom="15dp" />
@@ -45,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Password"
-            android:background="@drawable/login_textbox"
             android:inputType="textPassword"
             android:padding="10dp"
             android:layout_marginBottom="15dp" />
@@ -54,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Enter Password Again"
-            android:background="@drawable/login_textbox"
             android:inputType="textPassword"
             android:padding="10dp"
             android:layout_marginBottom="15dp" />
