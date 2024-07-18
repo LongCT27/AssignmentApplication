@@ -1,6 +1,8 @@
 package com.example.assignmentapplication.recycler;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,13 +55,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productPrice.setText(String.format("$%.2f", product.price));
         holder.productStock.setText(String.format("Stock: %d",product.amount));
 
+        //Set Image
+        if (product.imagePath != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(product.imagePath);
+            holder.productImage.setImageBitmap(bitmap);
+        }
+
         //Out of stock?
         if (product.amount == 0){
             holder.btnAddToCart.setEnabled(false);
         }
-
-        // Set a placeholder image for now
-        holder.productImage.setImageResource(R.drawable.placeholder);
 
         // Set click listeners for buttons (they do nothing for now)
         holder.btnViewDetails.setOnClickListener(new View.OnClickListener() {
