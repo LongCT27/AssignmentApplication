@@ -116,6 +116,8 @@ public interface ShopDao {
     @Query("SELECT * FROM Purchases WHERE purchaseId = :purchaseId")
     Purchase getPurchaseById(int purchaseId);
 
+    @Query("SELECT * FROM Purchases WHERE userId = :userId")
+    List<Purchase> getAllPurchasesByUserId(int userId);
     @Query("SELECT * FROM Purchases")
     List<Purchase> getAllPurchases();
 
