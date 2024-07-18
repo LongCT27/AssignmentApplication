@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.assignmentapplication.Adapter.PurchaseAdapterAdmin;
-import com.example.assignmentapplication.Adapter.PurchaseDetailAdapterAdmin;
+import com.example.assignmentapplication.AdapterTuanNM.PurchaseAdapterAdmin;
+import com.example.assignmentapplication.AdapterTuanNM.PurchaseDetailAdapterAdmin;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.entity.Purchase;

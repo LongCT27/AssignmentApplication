@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.assignmentapplication.Adapter.CategoryAdapterAdmin;
-import com.example.assignmentapplication.Adapter.ProductCategoryAdapterAdmin;
+import com.example.assignmentapplication.AdapterTuanNM.CategoryAdapterAdmin;
+import com.example.assignmentapplication.AdapterTuanNM.ProductCategoryAdapterAdmin;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
