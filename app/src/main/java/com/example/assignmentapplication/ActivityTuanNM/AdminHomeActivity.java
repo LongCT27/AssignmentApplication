@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.assignmentapplication.R;
+import com.example.assignmentapplication.manageProductActivity.ManageProductActivity;
+import com.example.assignmentapplication.mangeUserActivity.ListUserActivity;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
@@ -37,7 +39,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(AdminHomeActivity.this, ListUserActivity.class);
+                startActivity(intent);
             }
         });
         LinearLayout purchase = findViewById(R.id.Purchase_admin);
@@ -52,7 +55,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(AdminHomeActivity.this, ManageProductActivity.class);
+                startActivity(intent);
             }
         });
 

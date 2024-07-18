@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.assignmentapplication.ActivityTuanNM.AdminHomeActivity;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
 import com.example.assignmentapplication.manageProductActivity.ManageProductActivity;
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     private void completeLogin() {
         User user = ShopDatabaseInstance.getDatabase(this).shopDao().getUserById(UserHelper.getUserIDFromFile());
         if (user.role == 1){
-            Intent intent = new Intent(LoginActivity.this, ManageProductActivity.class);
+            Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);

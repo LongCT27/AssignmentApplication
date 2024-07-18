@@ -25,6 +25,7 @@ import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
+import com.example.assignmentapplication.room.ShopDatabaseInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,8 +90,7 @@ public class ManageCategoryActivity extends AppCompatActivity {
     }
 
     private void initRoomDatabase() {
-        db = Room.databaseBuilder(getApplicationContext(), ShopDatabase.class, "new").allowMainThreadQueries() // Avoid in production!
-                .build();
+        db = ShopDatabaseInstance.getDatabase(this);
         shopDao = db.shopDao();
     }
     private void showCart(int CategoryID) {
