@@ -27,7 +27,7 @@ public class PurchaseDetailAdapter extends RecyclerView.Adapter<PurchaseDetailAd
     @NonNull
     @Override
     public PurchaseDetailAdapter.PurchaseDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_purchasedetail, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_purchasedetail_admin, parent, false);
         return new PurchaseDetailAdapter.PurchaseDetailViewHolder(view);
     }
 
