@@ -108,7 +108,7 @@ public interface ShopDao {
 
     // Purchase operations
     @Insert
-    long insertPurchase(Purchase purchase);
+    void insertPurchase(Purchase purchase);
 
     @Update
     void updatePurchase(Purchase purchase);
@@ -118,6 +118,9 @@ public interface ShopDao {
 
     @Query("SELECT * FROM Purchases WHERE purchaseId = :purchaseId")
     Purchase getPurchaseById(int purchaseId);
+
+    @Query("SELECT SUM(totalPrice) FROM Purchases")
+    double getTotalBalance();
 
     @Query("SELECT * FROM Purchases")
     List<Purchase> getAllPurchases();
@@ -137,6 +140,8 @@ public interface ShopDao {
 
     @Query("SELECT * FROM PurchaseDetails")
     List<PurchaseDetail> getAllPurchaseDetails();
+    @Query("SELECT * FROM Products WHERE categoryId = :id")
+    List<Product> getAllProductBaseOnCategoryID(int id);
 
 
 }
