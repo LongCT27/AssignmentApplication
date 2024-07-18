@@ -13,7 +13,7 @@ import com.example.assignmentapplication.entity.Product;
 
 import java.util.List;
 
-public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder> {
+public class ProductCategoryAdapterAdmin extends RecyclerView.Adapter<ProductCategoryAdapterAdmin.ProductCategoryViewHolder> {
     private List<Product> mlist;
     private OnItemClickListener onItemClickListener;
 
@@ -24,7 +24,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
     }
 
 
-    public ProductCategoryAdapter(List<Product> mlist, OnItemClickListener onItemClickListener) {
+    public ProductCategoryAdapterAdmin(List<Product> mlist, OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
         this.mlist = mlist;
     }
@@ -33,7 +33,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
     @Override
     public ProductCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_base_category, parent, false);
-        return new ProductCategoryAdapter.ProductCategoryViewHolder(view);
+        return new ProductCategoryAdapterAdmin.ProductCategoryViewHolder(view);
     }
 
     @Override

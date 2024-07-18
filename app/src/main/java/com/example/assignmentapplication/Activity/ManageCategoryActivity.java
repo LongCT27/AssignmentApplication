@@ -1,7 +1,6 @@
 package com.example.assignmentapplication.Activity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +18,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.assignmentapplication.Adapter.CategoryAdapter;
-import com.example.assignmentapplication.Adapter.ProductCategoryAdapter;
+import com.example.assignmentapplication.Adapter.CategoryAdapterAdmin;
+import com.example.assignmentapplication.Adapter.ProductCategoryAdapterAdmin;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
-import com.example.assignmentapplication.entity.PurchaseDetail;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
 
@@ -34,8 +32,8 @@ import java.util.List;
 public class ManageCategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
-    private CategoryAdapter adapter;
-    private ProductCategoryAdapter adapter2;
+    private CategoryAdapterAdmin adapter;
+    private ProductCategoryAdapterAdmin adapter2;
     static List<Product> listProductBaseOnCategory = new ArrayList<>();
     static List<Category> list = new ArrayList<>();
     ShopDatabase db;
@@ -45,7 +43,7 @@ public class ManageCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_manage_category);
+        setContentView(R.layout.activity_manage_category_admin);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -72,7 +70,7 @@ public class ManageCategoryActivity extends AppCompatActivity {
         //addProduct();
         list = shopDao.getAllCategories();
         recyclerView = findViewById(R.id.rcv);
-        adapter = new CategoryAdapter(list, new CategoryAdapter.OnItemClickListener() {
+        adapter = new CategoryAdapterAdmin(list, new CategoryAdapterAdmin.OnItemClickListener() {
             @Override
             public void onItemClick(Category cate) {
                 showCart(cate.categoryId);
@@ -111,7 +109,7 @@ public class ManageCategoryActivity extends AppCompatActivity {
 
         listProductBaseOnCategory = shopDao.getAllProductBaseOnCategoryID(CategoryID);
         // Create an ArrayAdapter
-        adapter2 = new ProductCategoryAdapter(listProductBaseOnCategory, new ProductCategoryAdapter.OnItemClickListener() {
+        adapter2 = new ProductCategoryAdapterAdmin(listProductBaseOnCategory, new ProductCategoryAdapterAdmin.OnItemClickListener() {
             @Override
             public void onItemClick(Product product) {
                 // Handle item click

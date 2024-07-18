@@ -1,6 +1,5 @@
 package com.example.assignmentapplication.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.assignmentapplication.Adapter.PurchaseAdapter;
-import com.example.assignmentapplication.Adapter.PurchaseDetailAdapter;
+import com.example.assignmentapplication.Adapter.PurchaseAdapterAdmin;
+import com.example.assignmentapplication.Adapter.PurchaseDetailAdapterAdmin;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.entity.Purchase;
@@ -32,9 +31,9 @@ import java.util.List;
 public class ManagePurchaseActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
-    private PurchaseAdapter adapter;
+    private PurchaseAdapterAdmin adapter;
 
-    private PurchaseDetailAdapter adapter2;
+    private PurchaseDetailAdapterAdmin adapter2;
 
     static List<PurchaseDetail> listPurchaseDetailBaseOnPurchaseID = new ArrayList<>();
     static List<Purchase> list = new ArrayList<>();
@@ -45,7 +44,7 @@ public class ManagePurchaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_manage_purchase);
+        setContentView(R.layout.activity_manage_purchase_admin);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -65,7 +64,7 @@ public class ManagePurchaseActivity extends AppCompatActivity {
         //  addProduct();
         list = shopDao.getAllPurchases();
         recyclerView = findViewById(R.id.rcv3);
-        adapter = new PurchaseAdapter(list, new PurchaseAdapter.OnItemClickListener() {
+        adapter = new PurchaseAdapterAdmin(list, new PurchaseAdapterAdmin.OnItemClickListener() {
             @Override
             public void onItemClick(Purchase cate) {
 
@@ -106,7 +105,7 @@ public class ManagePurchaseActivity extends AppCompatActivity {
         List<Product> listp = shopDao.getAllProducts();
 
         // Create an ArrayAdapter
-        adapter2 = new PurchaseDetailAdapter(listt, listp);
+        adapter2 = new PurchaseDetailAdapterAdmin(listt, listp);
 
         GridLayoutManager manager2 = new GridLayoutManager(this, 1);
         recyclerView2.setLayoutManager(manager2);

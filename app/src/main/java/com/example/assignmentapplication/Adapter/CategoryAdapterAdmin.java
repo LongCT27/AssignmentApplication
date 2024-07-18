@@ -14,7 +14,7 @@ import com.example.assignmentapplication.entity.*;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
+public class CategoryAdapterAdmin extends RecyclerView.Adapter<CategoryAdapterAdmin.CategoryViewHolder> {
     private List<Category> mlist;
     private OnItemClickListener onItemClickListener;
 
@@ -25,7 +25,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
 
-    public CategoryAdapter(List<Category> mlist, OnItemClickListener onItemClickListener) {
+    public CategoryAdapterAdmin(List<Category> mlist, OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
         this.mlist = mlist;
     }
@@ -33,7 +33,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_admin, parent, false);
         return new CategoryViewHolder(view);
     }
 

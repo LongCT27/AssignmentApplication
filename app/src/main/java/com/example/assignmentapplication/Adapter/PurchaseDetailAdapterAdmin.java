@@ -14,25 +14,25 @@ import com.example.assignmentapplication.entity.PurchaseDetail;
 
 import java.util.List;
 
-public class PurchaseDetailAdapter extends RecyclerView.Adapter<PurchaseDetailAdapter.PurchaseDetailViewHolder> {
+public class PurchaseDetailAdapterAdmin extends RecyclerView.Adapter<PurchaseDetailAdapterAdmin.PurchaseDetailViewHolder> {
     private List<PurchaseDetail> mlist;
     private List<Product> plist;
 
 
-    public PurchaseDetailAdapter(List<PurchaseDetail> mlist, List<Product> plist) {
+    public PurchaseDetailAdapterAdmin(List<PurchaseDetail> mlist, List<Product> plist) {
         this.plist = plist;
         this.mlist = mlist;
     }
 
     @NonNull
     @Override
-    public PurchaseDetailAdapter.PurchaseDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PurchaseDetailAdapterAdmin.PurchaseDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_purchasedetail_admin, parent, false);
-        return new PurchaseDetailAdapter.PurchaseDetailViewHolder(view);
+        return new PurchaseDetailAdapterAdmin.PurchaseDetailViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PurchaseDetailAdapter.PurchaseDetailViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PurchaseDetailAdapterAdmin.PurchaseDetailViewHolder holder, int position) {
         PurchaseDetail PurchaseDetaito = mlist.get(position);
         if (PurchaseDetaito == null) {
             return;

@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder> {
+public class PurchaseAdapterAdmin extends RecyclerView.Adapter<PurchaseAdapterAdmin.PurchaseViewHolder> {
     private List<Purchase> mlist;
-    private PurchaseAdapter.OnItemClickListener onItemClickListener;
+    private PurchaseAdapterAdmin.OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener {
         void onItemClick(Purchase cate);
@@ -26,7 +26,7 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Purcha
     }
 
 
-    public PurchaseAdapter(List<Purchase> mlist, PurchaseAdapter.OnItemClickListener onItemClickListener) {
+    public PurchaseAdapterAdmin(List<Purchase> mlist, PurchaseAdapterAdmin.OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
         this.mlist = mlist;
     }
@@ -35,7 +35,7 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Purcha
     @Override
     public PurchaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_purchase_admin, parent, false);
-        return new PurchaseAdapter.PurchaseViewHolder(view);
+        return new PurchaseAdapterAdmin.PurchaseViewHolder(view);
     }
 
     @Override
