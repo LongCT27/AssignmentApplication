@@ -1,6 +1,8 @@
 package com.example.assignmentapplication.recycler;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +56,10 @@ public class PurchaseDetailAdapter extends RecyclerView.Adapter<PurchaseDetailAd
         PurchaseDetail purchaseDetail = mPurchaseDetails.get(position);
 //        holder.imageView.setImageResource(R.drawable.ic_action_cart);
         // get product:
+
         Product product = dao.getProductById(purchaseDetail.productId);
+        Bitmap bitmap = BitmapFactory.decodeFile(product.imagePath);
+        holder.imageView.setImageBitmap(bitmap);
         holder.productName.setText(product.productName);
         holder.purchaseQuantity.setText(String.valueOf(purchaseDetail.quantity));
         holder.purchasePrice.setText(String.valueOf(purchaseDetail.quantity * product.price));
