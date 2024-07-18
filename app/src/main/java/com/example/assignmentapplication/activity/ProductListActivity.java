@@ -117,6 +117,9 @@ public class ProductListActivity extends AppCompatActivity {
             });
             builder.setNegativeButton("No", null);
             builder.create().show();
+        } else if (item.getItemId() == R.id.action_view_purchases){
+            Intent intent = new Intent(this, PurchaseActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
