@@ -1,10 +1,12 @@
-package com.example.assignmentapplication;
+package com.example.assignmentapplication.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +19,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.assignmentapplication.Adapter.CategoryAdapter;
+import com.example.assignmentapplication.Adapter.ProductCategoryAdapter;
+import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Category;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.entity.PurchaseDetail;
@@ -46,14 +51,22 @@ public class ManageCategoryActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-       ImageView imageView232 = (ImageView) findViewById(R.id.imgBack);
-       imageView232.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent = new Intent(ManageCategoryActivity.this, AdminHomeActivity.class);
-               startActivity(intent);
-           }
-       });
+        ImageView imageView232 = (ImageView) findViewById(R.id.imgBack);
+        imageView232.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ImageView imgAdd = findViewById(R.id.imgAdd);
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View v) {
+                showCreate();
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         initRoomDatabase();
         //addProduct();
@@ -67,10 +80,10 @@ public class ManageCategoryActivity extends AppCompatActivity {
 
             @Override
             public void onRemoveClick(Category cate) {
-
+                showEdit(cate);
             }
         });
-        GridLayoutManager manager = new GridLayoutManager(this, 1);
+        GridLayoutManager manager = new GridLayoutManager(this, 2);
 
 
         recyclerView.setLayoutManager(manager);
@@ -82,17 +95,6 @@ public class ManageCategoryActivity extends AppCompatActivity {
                 .build();
         shopDao = db.shopDao();
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private void addProduct() {
-        //    shopDao.insertProduct(new Product("product23","no",12.2,1));
-        // shopDao.insertUser(new User("tuan","123","tuan@gmail.com",1,System.currentTimeMillis()));
-        //     shopDao.insertPurchase(new Purchase(1,12321,System.currentTimeMillis()));
-        shopDao.insertPurchaseDetail(new PurchaseDetail(2, 1, 2));
-        shopDao.insertPurchaseDetail(new PurchaseDetail(2, 3, 11));
-//shopDao.insertPurchaseDetail(new PurchaseDetail(1,3,13));
-    }
-
     private void showCart(int CategoryID) {
         // Inflate the custom layout/view
         LayoutInflater inflater = getLayoutInflater();
@@ -122,5 +124,65 @@ public class ManageCategoryActivity extends AppCompatActivity {
         recyclerView2.setAdapter(adapter2);
         // Show the dialog
         dialog.show();
+    }
+
+    private void showCreate() {
+        LayoutInflater inflater = getLayoutInflater();
+        View popupView = inflater.inflate(R.layout.popup_create_category, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
+        builder.setView(popupView);
+        AlertDialog dialog = builder.create();
+        EditText cateName = popupView.findViewById(R.id.category_name);
+
+        Button add = popupView.findViewById(R.id.create_cate);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Category category = new Category(cateName.getText().toString());
+                addProduct(category);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void showEdit(Category category) {
+        LayoutInflater inflater = getLayoutInflater();
+        View popupView = inflater.inflate(R.layout.popup_edit_category, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
+        builder.setView(popupView);
+        AlertDialog dialog = builder.create();
+        EditText cateName = popupView.findViewById(R.id.edit_category_name);
+        cateName.setText(category.categoryName);
+        Button add = popupView.findViewById(R.id.edit_cate);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category.categoryName = cateName.getText().toString();
+                updateCate(category);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void addProduct(Category category) {
+        shopDao.insertCategory(category); // Add the category to the database
+
+        // Update the list of categories from the database
+        list.clear();
+        list.addAll(shopDao.getAllCategories());
+
+        // Notify the adapter that the dataset has changed
+        adapter.notifyDataSetChanged();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void updateCate(Category category) {
+        shopDao.updateCategory(category);
+        adapter.notifyDataSetChanged();
     }
 }

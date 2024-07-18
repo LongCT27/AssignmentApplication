@@ -24,6 +24,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="30dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -65,6 +66,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv6"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_gravity="center" />
 </LinearLayout>

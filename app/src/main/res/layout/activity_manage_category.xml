@@ -6,21 +6,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ManageCategoryActivity">
+    tools:context=".Activity.ManageCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:layout_height="175dp"
 
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="14dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/baseline_arrow_back_24" />
+        android:background="@drawable/top_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="7dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/baseline_arrow_back_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:gravity="center"
+                android:text="Mange Category"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+            <ImageView
+                android:id="@+id/imgAdd"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/baseline_add_24" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/categories"/>
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.assignmentapplication;
+package com.example.assignmentapplication.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.assignmentapplication.Adapter.PurchaseAdapter;
+import com.example.assignmentapplication.Adapter.PurchaseDetailAdapter;
+import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Product;
 import com.example.assignmentapplication.entity.Purchase;
 import com.example.assignmentapplication.entity.PurchaseDetail;
@@ -48,15 +51,17 @@ public class ManagePurchaseActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextView totalbalance = findViewById(R.id.TotalBalance);
+
         ImageView imageView232 = (ImageView) findViewById(R.id.imgBack);
         imageView232.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManagePurchaseActivity.this, AdminHomeActivity.class);
-                startActivity(intent);
+              finish();
             }
         });
         initRoomDatabase();
+        totalbalance.setText(Double.toString(shopDao.getTotalBalance()));
         //  addProduct();
         list = shopDao.getAllPurchases();
         recyclerView = findViewById(R.id.rcv3);

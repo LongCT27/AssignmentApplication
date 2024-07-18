@@ -95,6 +95,9 @@ public interface ShopDao {
     @Query("SELECT * FROM Purchases WHERE purchaseId = :purchaseId")
     Purchase getPurchaseById(int purchaseId);
 
+    @Query("SELECT SUM(totalPrice) FROM Purchases")
+    double getTotalBalance();
+
     @Query("SELECT * FROM Purchases")
     List<Purchase> getAllPurchases();
 
