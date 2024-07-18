@@ -9,10 +9,9 @@ public class ShopDatabaseSingleton {
     public static synchronized ShopDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                            ShopDatabase.class, "shop_database")
+                            ShopDatabase.class, "database")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
-                    .addMigrations(Migrations.MIGRATION_1_2)
                     .build();
         }
         return instance;

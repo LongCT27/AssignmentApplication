@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.User;
+import com.example.assignmentapplication.manageProductActivity.ManageProductActivity;
 import com.example.assignmentapplication.room.ShopDatabase;
 import com.example.assignmentapplication.utilities.UserHelper;
 
@@ -57,11 +58,21 @@ public class LoginActivity extends AppCompatActivity {
 
         //If the user is already logged in, redirect to the Product List page immediately
         if (UserHelper.getUserIDFromFile() != -1){
-            Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
-            startActivity(intent);
-            finish();
+            completeLogin();
         }
 
+    }
+
+    private void completeLogin() {
+        User user = ShopDatabaseInstance.getDatabase(this).shopDao().getUserById(UserHelper.getUserIDFromFile());
+        if (user.role == 1){
+            Intent intent = new Intent(LoginActivity.this, ManageProductActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
+            startActivity(intent);
+        }
+        finish();
     }
 
     // create login function using AsyncTask for database operations
@@ -97,10 +108,8 @@ public class LoginActivity extends AppCompatActivity {
                 // Handle successful login, for example:
                 UserHelper.saveUserInfoExternal(user);
                 //Redirect to ProductList page
-                Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
-                startActivity(intent);
                 showToast("Login successful");
-                finish();
+                completeLogin();
             } else {
                 showToast("Invalid username/email or password");
             }

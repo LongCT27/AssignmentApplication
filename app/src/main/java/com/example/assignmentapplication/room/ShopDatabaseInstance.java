@@ -11,7 +11,6 @@ public class ShopDatabaseInstance {
         if (database == null){
             database = Room.databaseBuilder(context,ShopDatabase.class,"database")
                     .allowMainThreadQueries()
-                    .addMigrations(Migrations.MIGRATION_1_2)
                     .fallbackToDestructiveMigration()
                     .build();
         }
