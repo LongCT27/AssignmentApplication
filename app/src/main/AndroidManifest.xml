@@ -13,16 +13,16 @@
         android:theme="@style/Theme.AssignmentApplication"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.ManagePurchaseActivity"
+            android:name=".ActivityTuanNM.ManagePurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ManageCategoryActivity"
+            android:name=".ActivityTuanNM.ManageCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.AdminHomeActivity"
+            android:name=".ActivityTuanNM.AdminHomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

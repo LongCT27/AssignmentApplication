@@ -1,4 +1,4 @@
-package com.example.assignmentapplication.Activity;
+package com.example.assignmentapplication.ActivityTuanNM;
 
 import android.content.Intent;
 import android.os.Bundle;

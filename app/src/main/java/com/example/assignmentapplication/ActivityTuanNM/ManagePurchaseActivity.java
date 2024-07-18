@@ -1,4 +1,4 @@
-package com.example.assignmentapplication.Activity;
+package com.example.assignmentapplication.ActivityTuanNM;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

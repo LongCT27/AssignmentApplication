@@ -1,4 +1,4 @@
-package com.example.assignmentapplication.Activity;
+package com.example.assignmentapplication.ActivityTuanNM;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
