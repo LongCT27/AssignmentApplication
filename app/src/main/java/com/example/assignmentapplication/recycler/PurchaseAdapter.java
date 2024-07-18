@@ -1,4 +1,4 @@
-package com.example.assignmentapplication.purchase;
+package com.example.assignmentapplication.recycler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.assignmentapplication.R;
 import com.example.assignmentapplication.entity.Purchase;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder> {
 
@@ -43,7 +41,7 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Purcha
     public void onBindViewHolder(@NonNull PurchaseViewHolder holder, int position) {
         Purchase purchase = mPurchases.get(position);
         // Assuming purchase.purchaseDate is a long value representing epoch milliseconds
-        holder.imageView.setImageResource(R.drawable.ic_action_cart);
+        holder.imageView.setImageResource(R.drawable.ic_action_cart); //
         Date date = new Date(purchase.purchaseDate);
         holder.purchaseDate.setText(date.toString());
         holder.purchaseTotal.setText(String.valueOf(purchase.totalPrice));
@@ -84,9 +82,10 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Purcha
             this.mPurchases = purchases;
             detail_button.setOnClickListener(v -> {
                 int position = getAdapterPosition();
-//            purchases.get(position);
+                Purchase selectedPurchase = purchases.get(position);
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onDetailClick(mPurchases.get(position));
+                    //intent to detail activity
                 }
             });
         }

@@ -15,9 +15,16 @@
         android:theme="@style/Theme.AssignmentApplication"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PurchaseDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PurchaseActivity"
-            android:exported="false" >
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.CartActivity"
@@ -33,17 +40,10 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 
