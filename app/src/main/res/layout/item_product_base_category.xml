@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/product_image_category"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:src="@drawable/user_icon_149329" />

@@ -1,8 +1,11 @@
 package com.example.assignmentapplication.AdapterTuanNM;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +51,10 @@ public class ProductCategoryAdapterAdmin extends RecyclerView.Adapter<ProductCat
 
         holder.productName.setText(productName);
         holder.productPrice.setText(productPrice);
+        if (product.imagePath != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(product.imagePath);
+            holder.productImage.setImageBitmap(bitmap);
+        }
 
         holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(product));
 
@@ -66,6 +73,7 @@ public class ProductCategoryAdapterAdmin extends RecyclerView.Adapter<ProductCat
 
         private TextView productName;
         private TextView productPrice;
+        private ImageView productImage;
 
 
         public ProductCategoryViewHolder(@NonNull View itemView) {
@@ -73,7 +81,7 @@ public class ProductCategoryAdapterAdmin extends RecyclerView.Adapter<ProductCat
             super(itemView);
 
             productName = itemView.findViewById(R.id.productName_Category);
-
+            productImage = itemView.findViewById(R.id.product_image_category);
             productPrice = itemView.findViewById(R.id.text_priceCate);
         }
 

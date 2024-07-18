@@ -24,6 +24,7 @@ import com.example.assignmentapplication.entity.Purchase;
 import com.example.assignmentapplication.entity.PurchaseDetail;
 import com.example.assignmentapplication.room.ShopDao;
 import com.example.assignmentapplication.room.ShopDatabase;
+import com.example.assignmentapplication.room.ShopDatabaseInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +80,7 @@ public class ManagePurchaseActivity extends AppCompatActivity {
     }
 
     private void initRoomDatabase() {
-        db = Room.databaseBuilder(getApplicationContext(), ShopDatabase.class, "new").allowMainThreadQueries() // Avoid in production!
-                .build();
+        db = ShopDatabaseInstance.getDatabase(this);
         shopDao = db.shopDao();
     }
 

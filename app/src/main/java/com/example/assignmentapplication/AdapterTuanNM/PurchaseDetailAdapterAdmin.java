@@ -1,8 +1,11 @@
 package com.example.assignmentapplication.AdapterTuanNM;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,12 +41,15 @@ public class PurchaseDetailAdapterAdmin extends RecyclerView.Adapter<PurchaseDet
             return;
         }
         String productNameT="";
+        String imagePath = null;
         for (Product p : plist) {
             if (p.productId== PurchaseDetaito.productId){
                 productNameT = p.productName;
+                imagePath = p.imagePath;
                 break;
             }
         }
+
 
         //  String productName = Integer.toString(PurchaseDetaito.productId);
 
@@ -51,7 +57,10 @@ public class PurchaseDetailAdapterAdmin extends RecyclerView.Adapter<PurchaseDet
 
         holder.ProductName.setText(productNameT);
         holder.Quantity.setText(productQuantity);
-
+        if (imagePath != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            holder.productImage.setImageBitmap(bitmap);
+        }
 
     }
 
@@ -66,6 +75,7 @@ public class PurchaseDetailAdapterAdmin extends RecyclerView.Adapter<PurchaseDet
     public class PurchaseDetailViewHolder extends RecyclerView.ViewHolder {
 
         private TextView ProductName, Quantity;
+        private ImageView productImage;
 
 
         public PurchaseDetailViewHolder(@NonNull View itemView) {
@@ -74,6 +84,7 @@ public class PurchaseDetailAdapterAdmin extends RecyclerView.Adapter<PurchaseDet
 
             ProductName = itemView.findViewById(R.id.purchase_detail_producName);
             Quantity = itemView.findViewById(R.id.purchase_detail_quantity);
+            productImage = itemView.findViewById(R.id.product_image);
 
 
         }
