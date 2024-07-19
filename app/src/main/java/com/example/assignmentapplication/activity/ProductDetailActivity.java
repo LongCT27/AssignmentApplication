@@ -1,5 +1,7 @@
 package com.example.assignmentapplication.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,6 +53,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         shopDatabase = ShopDatabaseInstance.getDatabase(getApplicationContext());
         dao = shopDatabase.shopDao();
 
+        //Image
+
+
         // Get product details from intent
         productId = getIntent().getIntExtra("product_id", -1);
         if (productId != -1) {
@@ -61,6 +66,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                 productDescription.setText(product.description);
                 productPrice.setText(String.format("$%.2f", product.price));
                 productImage.setImageResource(R.drawable.placeholder); // Placeholder image
+                if (product.imagePath != null){
+                    Bitmap bitmap = BitmapFactory.decodeFile(product.imagePath);
+                    productImage.setImageBitmap(bitmap);
+                }
                 //Check for amount able to add
                 quantityPicker.setMinValue(1);
                 Cart cart = dao.getUserCartOfProduct(1, productId);

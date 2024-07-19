@@ -144,7 +144,7 @@ public class AddUserActivity extends AppCompatActivity {
     private void initSpinner() {
         spinner = findViewById(R.id.spinner_role);
         String[] titles = {
-                "Manger", "Customer"
+                "Customer", "Manager"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, titles);
         spinner.setAdapter(adapter);

@@ -48,7 +48,7 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
         User user = users.get(position);
         holder.idTextView.setText("ID: "+user.userId);
         holder.usernameTextView.setText("Username: "+user.username);
-        holder.roleTextView.setText("Role: " + (user.role == 0? "Manager" : "Customer"));
+        holder.roleTextView.setText("Role: " + (user.role == 1? "Manager" : "Customer"));
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
